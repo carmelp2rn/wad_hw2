@@ -3,4 +3,4 @@ $(function () {
     var course = new Course(["Web Application Development", "Programming", "Mathematics", "Multimedia" ], [4, 3, 2, 1],
         [85, 90, 75, 60]);
 
-})
+});
