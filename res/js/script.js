@@ -39,8 +39,8 @@ $(function () {
 		addNewCourse();
 		$("#add-course").toggle();
 		$("#title, #semester, #grade").val("");
-		user.gpa+=10
-		$('#gpa').text(user.gpa)
+		user.gpa=findGPA(courses)
+		$('#gpa strong').text(user.gpa)
 		
 		
 		
@@ -52,6 +52,20 @@ $(function () {
 		
 		
     });
+	
+function findGPA(arr){
+	let gradesTotal=0;
+	for (let i = 0; i < arr.length; i++) {
+		if(arr[i].grade>90){s+=4}
+		else if(arr[i].grade>80){gradesTotal+=3}
+		else if(arr[i].grade>70){gradesTotal+=2}
+		else if(arr[i].grade>60){gradesTotal+=1}
+		else if(arr[i].grade>50){gradesTotal+=0.5}
+		else{gradesTotal+=0}
+	}
+	return gradesTotal/arr.length;
+}
+
 
 	
 function addNewCourse(){
@@ -92,7 +106,9 @@ function init() {
         tr.append(nr, title, semester, grade);
         $("#courses tr:last").after(tr);
     }
-	$('#gpa').text(user.gpa)
+	
+	user.gpa=findGPA(courses)
+	$('#gpa strong').text(user.gpa)
 }
 
 });
