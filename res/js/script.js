@@ -7,6 +7,8 @@ $(function () {
         new Course("Multimedia", 3, 60),
     ];
     init();
+	
+
 
     $("#courses-button").click(function() {
         $("#profile").hide();
@@ -37,17 +39,21 @@ $(function () {
 		addNewCourse();
 		$("#add-course").toggle();
 		$("#title, #semester, #grade").val("");
+		user.gpa+=10
+		$('#gpa').text(user.gpa)
+		
+		
 		
     });
 	
 	$("#cancel-course").click(function () {
         $("#add-course").toggle();
 		$("#title, #semester, #grade").val("")
+		
+		
     });
+
 	
-
-
-
 function addNewCourse(){
         let tr = $("<tr></tr>");
         let nr = $("<td></td>");
@@ -69,7 +75,6 @@ function init() {
     $(".info #birthdate").text(user.birthdate);
     $(".info #faculty").text(user.faculty);
     $("#profile #gpa strong").text(user.gpa);
-
     for (let i = 0; i < courses.length; i++) {
         let tr = $("<tr></tr>");
         let nr = $("<td></td>");
@@ -85,11 +90,9 @@ function init() {
         grade.text(courses[i].grade);
 
         tr.append(nr, title, semester, grade);
-
         $("#courses tr:last").after(tr);
     }
-	
-	
+	$('#gpa').text(user.gpa)
 }
 
 });
