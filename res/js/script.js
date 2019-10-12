@@ -56,7 +56,7 @@ $(function () {
 function findGPA(arr){
 	let gradesTotal=0;
 	for (let i = 0; i < arr.length; i++) {
-		if(arr[i].grade>90){s+=4}
+		if(arr[i].grade>90){gradesTotal+=4}
 		else if(arr[i].grade>80){gradesTotal+=3}
 		else if(arr[i].grade>70){gradesTotal+=2}
 		else if(arr[i].grade>60){gradesTotal+=1}
