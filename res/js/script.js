@@ -63,11 +63,11 @@ function findGPA(arr){
 		else if(arr[i].grade>50){gradesTotal+=0.5}
 		else{gradesTotal+=0}
 	}
-	return gradesTotal/arr.length;
+	return Math.round((gradesTotal/arr.length) * 100) / 100;
 }
 
 
-	
+
 function addNewCourse(){
         let tr = $("<tr></tr>");
         let nr = $("<td></td>");
