@@ -7,8 +7,6 @@ $(function () {
         new Course("Multimedia", 3, 60),
     ];
     init();
-	
-
 
     $("#courses-button").click(function() {
         $("#profile").hide();
@@ -31,17 +29,14 @@ $(function () {
     });
 	
 	$("#save-course").click(function (event) {
-		let titleOfNewCourse=document.getElementById('title').value
-		let semeseterOfNewCourse=document.getElementById('semester').value
-		let gradeOfNewCourse=document.getElementById('grade').value
-		let newCourse = new Course(titleOfNewCourse,semeseterOfNewCourse,gradeOfNewCourse);
-		courses.push(newCourse);
-		addNewCourse();
-		$("#add-course").toggle();
-		$("#title, #semester, #grade").val("");
-		user.gpa=findGPA(courses)
-		$('#gpa strong').text(user.gpa)
-		
+        var course_name = $('input[placeholder="Course title"]').val();
+        var semester = $('input[placeholder="Semester"]').val();
+        var grade = $('input[placeholder="Grade"]').val();
+        courses.push(new Course(course_name, semester, +grade));
+        $("#courses").find("tr:gt(0)").remove();
+        init();
+        $('#add-course .input').val('');
+        $('#add-course').hide();
 		
 		
     });
@@ -68,7 +63,8 @@ function findGPA(arr){
 
 
 
-function addNewCourse(){
+/* function addNewCourse(){
+
         let tr = $("<tr></tr>");
         let nr = $("<td></td>");
         let title = $("<td></td>");
@@ -82,6 +78,7 @@ function addNewCourse(){
         tr.append(nr, title, semester, grade);
         $("#courses tr:last").after(tr);
 }
+ */
 
 function init() {
 
@@ -89,6 +86,7 @@ function init() {
     $(".info #birthdate").text(user.birthdate);
     $(".info #faculty").text(user.faculty);
     $("#profile #gpa strong").text(user.gpa);
+
     for (let i = 0; i < courses.length; i++) {
         let tr = $("<tr></tr>");
         let nr = $("<td></td>");
@@ -96,15 +94,14 @@ function init() {
         let semester = $("<td></td>");
         let grade = $("<td></td>");
 
-        let id = parseInt($("#courses tbody tr:last td:first").text()) + 1;
-
-        nr.text(id);
+        nr.text(i+1);
         title.text(courses[i].title);
         semester.text(courses[i].semester);
         grade.text(courses[i].grade);
 
-        tr.append(nr, title, semester, grade);
-        $("#courses tr:last").after(tr);
+        tr.append(nr,title,semester,grade);
+
+        $('#courses tr:last').after(tr);
     }
 	
 	user.gpa=findGPA(courses)
